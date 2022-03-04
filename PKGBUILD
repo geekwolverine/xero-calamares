@@ -2,8 +2,8 @@
 
 pkgname=xero-calamares
 _pkgname=calamares
-pkgver=3.2.52
-pkgrel=2
+pkgver=3.2.53
+pkgrel=1
 pkgdesc='Distribution-independent installer framework'
 arch=('i686' 'x86_64')
 license=(GPL)
@@ -40,7 +40,7 @@ prepare() {
 	sed -i -e 's/"Install configuration files" OFF/"Install configuration files" ON/' "$srcdir/${_pkgname}-${pkgver}/CMakeLists.txt"
 	sed -i -e 's/# DEBUG_FILESYSTEMS/DEBUG_FILESYSTEMS/' "$srcdir/${_pkgname}-${pkgver}/CMakeLists.txt"
 	sed -i -e 's/Install packages/Updating System (Might Take a While...)/' "$srcdir/${_pkgname}-${pkgver}/src/modules/packages/main.py"
-	sed -i 's/,\ self.line_cb//g'  "$srcdir/${_pkgname}-${pkgver}/src/modules/packages/main.py"
+	#sed -i 's/,\ self.line_cb//g'  "$srcdir/${_pkgname}-${pkgver}/src/modules/packages/main.py"
 
 	# add pkgrelease to patch-version
 	cd ${_pkgname}-${pkgver}
