@@ -2,7 +2,7 @@
 
 pkgname=xero-calamares
 _pkgname=calamares
-pkgver=3.2.59
+pkgver=3.2.60
 pkgrel=1
 pkgdesc='Distribution-independent installer framework'
 arch=('i686' 'x86_64')
@@ -21,10 +21,12 @@ backup=('usr/share/calamares/modules/bootloader.conf'
 
 source=("$_pkgname-$pkgver::$url/download/v$pkgver/$_pkgname-$pkgver.tar.gz"
 #	"calamares.desktop"
+	"dm_main.py"
 	"calamares_polkit"
 	"49-nopasswd-calamares.rules")
 
-sha256sums=('917f050c5541abba050dd7ae8c665ea2382690610732a70e116b45a1e77387a2'
+sha256sums=('55adef250613e80a868f2aa3d1e57bdae5b769387d91decf0fe2b64e3605574f'
+            '45ae3cdb243e1109a6abd6ed803e39eaec7cf313ed8a88b516a5667f149fdea5'
             '4c8b48518b0047672e835e0a6c8a66342b316ab8835cf4c331030de4830dcea2'
             '56d85ff6bf860b9559b8c9f997ad9b1002f3fccc782073760eca505e3bddd176')
 
@@ -76,5 +78,6 @@ package() {
 #	install -Dm755 "${srcdir}/calamares.desktop" "$pkgdir/home/liveuser/Desktop/calamares.desktop"
 	install -Dm755 "${srcdir}/calamares_polkit" "$pkgdir/usr/bin/calamares_polkit"
 	install -Dm644 "${srcdir}/49-nopasswd-calamares.rules" "$pkgdir/etc/polkit-1/rules.d/49-nopasswd-calamares.rules"
+	install -Dm644 "${srcdir}/dm_main.py" "${srcdir}/$_pkgname-$pkgver/src/modules/displaymanager/main.py"
 	chmod 750 "$pkgdir"/etc/polkit-1/rules.d
 }
