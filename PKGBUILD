@@ -21,6 +21,7 @@ backup=('usr/share/calamares/modules/bootloader.conf'
 
 source=("$_pkgname-$pkgver::$url/download/v$pkgver/$_pkgname-$pkgver.tar.gz"
 #	"calamares.desktop"
+	"calamares.patch"
 	"dm_main.py"
 	"calamares_polkit"
 	"49-nopasswd-calamares.rules")
@@ -81,3 +82,4 @@ package() {
 	install -Dm644 "${srcdir}/49-nopasswd-calamares.rules" "$pkgdir/etc/polkit-1/rules.d/49-nopasswd-calamares.rules"
 	chmod 750 "$pkgdir"/etc/polkit-1/rules.d
 }
+https://github.com/calamares/calamares/compare/calamares...CachyOS:calamares:calamares.patch
