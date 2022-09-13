@@ -3,7 +3,7 @@
 pkgname=xero-calamares
 _pkgname=calamares
 pkgver=3.2.61
-pkgrel=1
+pkgrel=2
 pkgdesc='Distribution-independent installer framework'
 arch=('i686' 'x86_64')
 license=(GPL)
@@ -21,16 +21,16 @@ backup=('usr/share/calamares/modules/bootloader.conf'
 
 source=("$_pkgname-$pkgver::$url/download/v$pkgver/$_pkgname-$pkgver.tar.gz"
 #	"calamares.desktop"
-	"calamares.patch"
 	"dm_main.py"
 	"calamares_polkit"
-	"49-nopasswd-calamares.rules")
+	"49-nopasswd-calamares.rules"
+	"https://github.com/calamares/calamares/commit/79db04dc2eb00b354044f73c054a94fe2b9f9aae.patch")
 
 sha256sums=('7591b9b60738bdba7b9de2b8da5462ab21006db06a006f0dd21ac5b832711dd2'
-            '5c5ff4fd01bdeeb28c326621f760a15edb234e819f9b3c87357cac8b1d273f06'
             '45ae3cdb243e1109a6abd6ed803e39eaec7cf313ed8a88b516a5667f149fdea5'
             'e61245ff7e4c3af6f05a9fe9a3fcf47f2780d9aa88c11eab02a35fac446cf1e1'
-            '56d85ff6bf860b9559b8c9f997ad9b1002f3fccc782073760eca505e3bddd176')
+            '56d85ff6bf860b9559b8c9f997ad9b1002f3fccc782073760eca505e3bddd176'
+            '3457ab03e46dcbb4e5e42c078c3cf0349e1eace31ca4ae6ee6f030810f57c6b8')
 
 pkgver() {
 	cd ${srcdir}/$_pkgname-$pkgver
@@ -49,9 +49,9 @@ prepare() {
 	# add pkgrelease to patch-version
 	cd ${_pkgname}-${pkgver}
 	_patchver="$(cat CMakeLists.txt | grep -m3 -e CALAMARES_VERSION_PATCH | grep -o "[[:digit:]]*" | xargs)"
-	patch -Rp1 -i calamares.patch
 	sed -i -e "s|CALAMARES_VERSION_PATCH $_patchver|CALAMARES_VERSION_PATCH $_patchver-$pkgrel|g" CMakeLists.txt
 	install -Dm644 "${srcdir}/dm_main.py" "${srcdir}/$_pkgname-$pkgver/src/modules/displaymanager/main.py"
+	patch -Rp1 -i ${srcdir}/79db04dc2eb00b354044f73c054a94fe2b9f9aae.patch
 
 }
 
