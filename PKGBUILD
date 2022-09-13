@@ -26,9 +26,10 @@ source=("$_pkgname-$pkgver::$url/download/v$pkgver/$_pkgname-$pkgver.tar.gz"
 	"calamares_polkit"
 	"49-nopasswd-calamares.rules")
 
-sha256sums=('55adef250613e80a868f2aa3d1e57bdae5b769387d91decf0fe2b64e3605574f'
+sha256sums=('7591b9b60738bdba7b9de2b8da5462ab21006db06a006f0dd21ac5b832711dd2'
+            '5c5ff4fd01bdeeb28c326621f760a15edb234e819f9b3c87357cac8b1d273f06'
             '45ae3cdb243e1109a6abd6ed803e39eaec7cf313ed8a88b516a5667f149fdea5'
-            '4c8b48518b0047672e835e0a6c8a66342b316ab8835cf4c331030de4830dcea2'
+            'e61245ff7e4c3af6f05a9fe9a3fcf47f2780d9aa88c11eab02a35fac446cf1e1'
             '56d85ff6bf860b9559b8c9f997ad9b1002f3fccc782073760eca505e3bddd176')
 
 pkgver() {
@@ -48,6 +49,7 @@ prepare() {
 	# add pkgrelease to patch-version
 	cd ${_pkgname}-${pkgver}
 	_patchver="$(cat CMakeLists.txt | grep -m3 -e CALAMARES_VERSION_PATCH | grep -o "[[:digit:]]*" | xargs)"
+	patch -Rp1 -i calamares.patch
 	sed -i -e "s|CALAMARES_VERSION_PATCH $_patchver|CALAMARES_VERSION_PATCH $_patchver-$pkgrel|g" CMakeLists.txt
 	install -Dm644 "${srcdir}/dm_main.py" "${srcdir}/$_pkgname-$pkgver/src/modules/displaymanager/main.py"
 
@@ -82,4 +84,3 @@ package() {
 	install -Dm644 "${srcdir}/49-nopasswd-calamares.rules" "$pkgdir/etc/polkit-1/rules.d/49-nopasswd-calamares.rules"
 	chmod 750 "$pkgdir"/etc/polkit-1/rules.d
 }
-https://github.com/calamares/calamares/compare/calamares...CachyOS:calamares:calamares.patch
