@@ -3,7 +3,7 @@
 pkgname=xero-calamares
 _pkgname=calamares
 pkgver=3.2.61
-pkgrel=3
+pkgrel=4
 pkgdesc='Distribution-independent installer framework'
 arch=('i686' 'x86_64')
 license=(GPL)
@@ -11,7 +11,7 @@ url="https://github.com/calamares/calamares/releases"
 license=('LGPL')
 depends=('kconfig' 'kcoreaddons' 'kiconthemes' 'ki18n' 'kio' 'solid' 'yaml-cpp' 'kpmcore>=4.2.0' 'mkinitcpio-openswap'
          'boost-libs' 'ckbcomp' 'hwinfo' 'qt5-svg' 'polkit-qt5' 'gtk-update-icon-cache' 'plasma-framework'
-         'qt5-xmlpatterns' 'squashfs-tools' 'libpwquality' 'efibootmgr' 'icu')
+         'qt5-xmlpatterns' 'squashfs-tools' 'libpwquality' 'efibootmgr' 'icu' 'qt5-quickcontrols2')
 conflicts=()
 makedepends=('extra-cmake-modules' 'qt5-tools' 'qt5-translations' 'git' 'boost')
 backup=('usr/share/calamares/modules/bootloader.conf'
