@@ -1,9 +1,9 @@
-# Maintainer: Philip Müller <philm[at]manjaro[dog]org>
+# Maintainer: DarkXero
 
 pkgname=xero-calamares
 _pkgname=calamares
 pkgver=3.2.61
-pkgrel=4
+pkgrel=5
 pkgdesc='Distribution-independent installer framework'
 arch=('i686' 'x86_64')
 license=(GPL)
@@ -76,8 +76,6 @@ build() {
 package() {
 	cd ${_pkgname}-${pkgver}/build
 	make DESTDIR="$pkgdir" install
-#	install -Dm644 "${srcdir}/calamares.desktop" "$pkgdir/etc/xdg/autostart/calamares.desktop"
-#	install -Dm755 "${srcdir}/calamares.desktop" "$pkgdir/home/liveuser/Desktop/calamares.desktop"
 	install -Dm755 "${srcdir}/calamares_polkit" "$pkgdir/usr/bin/calamares_polkit"
 	install -Dm644 "${srcdir}/49-nopasswd-calamares.rules" "$pkgdir/etc/polkit-1/rules.d/49-nopasswd-calamares.rules"
 	chmod 750 "$pkgdir"/etc/polkit-1/rules.d
