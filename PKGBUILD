@@ -3,7 +3,7 @@
 pkgname=xero-calamares
 _pkgname=calamares
 pkgver=3.2.61
-pkgrel=5
+pkgrel=12
 pkgdesc='Distribution-independent installer framework'
 arch=('i686' 'x86_64')
 license=(GPL)
