@@ -78,5 +78,6 @@ package() {
 	make DESTDIR="$pkgdir" install
 	install -Dm755 "${srcdir}/calamares_polkit" "$pkgdir/usr/bin/calamares_polkit"
 	install -Dm644 "${srcdir}/49-nopasswd-calamares.rules" "$pkgdir/etc/polkit-1/rules.d/49-nopasswd-calamares.rules"
+	rm "$pkgdir/usr/share/applications/calamares.desktop"
 	chmod 750 "$pkgdir"/etc/polkit-1/rules.d
 }
